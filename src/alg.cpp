@@ -41,7 +41,7 @@ int countPairs2(int *arr, int len, int value) {
     return countSum;
     return 0;
 }
-int countPairs3(int *arr, int len, int value) {
+int countPairs3(int **arr, int len, int value) {
     Sort(arr, len);
     int left = 0, right = len - 1, count = 0;
     while (left < right) {
