@@ -1,6 +1,5 @@
 // Copyright 2021 NNTU-CS
-void Sort(int* arr, int len)
-{
+void Sort(int* arr, int len) {
     int t;
     for (int i = 0; i < len - 1 ; i++) {
         for (int j = 0; j < len - i - 1; j++) {
