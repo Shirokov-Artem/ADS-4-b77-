@@ -42,7 +42,7 @@ int countPairs2(int *arr, int len, int value) {
     return 0;
 }
 int countPairs3(int *arr, int len, int value) {
-    sort(arr, arr + len);
+    Sort(arr, len);
     int left = 0, right = len - 1, count = 0;
     while (left < right) {
         int curr_sum = arr[left * 2 + 1] + arr[right * 2 + 1];
