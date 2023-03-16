@@ -2,12 +2,9 @@
 void Sort(int* arr, int len)
 {
     int t;
-    for (int i = 0; i < len - 1 ; i++)
-    {
-        for (int j = 0; j < len - i - 1; j++)
-        {
-            if (arr[j + 1] < arr[j])
-            {
+    for (int i = 0; i < len - 1 ; i++) {
+        for (int j = 0; j < len - i - 1; j++) {
+            if (arr[j + 1] < arr[j]) {
                 t = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = t;
@@ -58,11 +55,9 @@ int countPairs3(int *arr, int len, int value) {
             }
             left++;
             right--;
-        }
-        else if (curr_sum < value) {
+        } else if (curr_sum < value) {
             left++;
-        }
-        else {
+        } else {
             right--;
         }
     }
