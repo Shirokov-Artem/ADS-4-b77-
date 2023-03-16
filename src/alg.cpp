@@ -25,7 +25,6 @@ int countPairs1(int *arr, int len, int value) {
         }
     }
     return countSum;
-    return 0;
 }
 int countPairs2(int *arr, int len, int value) {
     Sort(arr, len);
@@ -39,31 +38,33 @@ int countPairs2(int *arr, int len, int value) {
         }
     }
     return countSum;
-    return 0;
+}
+int binarySearch(int *arr, int len, int value) {
+    Sort(arr, len);
+    int low = 0;
+    int high = len - 1;
+    int mid;
+    while (low <= high) {
+        mid = (low + high) / 2;
+        if (arr[mid] == value) {
+            return mid;
+        } else if (arr[mid] < value) {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return -1;
 }
 int countPairs3(int *arr, int len, int value) {
     Sort(arr, len);
-    int left = 0, right = len - 1, count = 0;
-    while (left < right) {
-        int curr_sum = arr[left * 2 + 1] + arr[right * 2 + 1];
-        if (curr_sum == value) {
+    int count = 0;
+    for (int i = 0; i < len; i++) {
+        int diff = value - arr[i];
+        int index = binarySearch(arr, len, diff);
+        if (index != -1 && index != i) {
             count++;
-            int l = left + 1, r = right - 1;
-            while (l <= r && arr[l * 2 + 1] == arr[left * 2 + 1]) {
-                count++;
-                l++;
-            }
-            while (l <= r && arr[r * 2 + 1] == arr[right * 2 + 1]) {
-                count++;
-                r--;
-            }
-            left = l;
-            right = r;
-        } else if (curr_sum < value) {
-            left++;
-        } else {
-            right--;
         }
     }
-    return count;
+    return count / 2;
 }
