@@ -1,4 +1,6 @@
 // Copyright 2021 NNTU-CS
+#include <iostream>
+#include <algorithm>
 void Sort(int* arr, int len) {
     int t;
     for (int i = 0; i < len - 1 ; i++) {
@@ -43,15 +45,15 @@ int countPairs3(int *arr, int len, int value) {
     Sort(arr, len);
     int left = 0, right = len - 1, count = 0;
     while (left < right) {
-        int curr_sum = arr[left] + arr[right];
+        int curr_sum = arr[left].second + arr[right].second;
         if (curr_sum == value) {
             count++;
             int l = left + 1, r = right - 1;
-            while (l <= r && arr[l] == arr[left]) {
+            while (l <= r && arr[l].second == arr[left].second) {
                 count++;
                 l++;
             }
-            while (l <= r && arr[r] == arr[right]) {
+            while (l <= r && arr[r].second == arr[right].second) {
                 count++;
                 r--;
             }
