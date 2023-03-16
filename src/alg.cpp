@@ -1,6 +1,4 @@
 // Copyright 2021 NNTU-CS
-#include <iostream>
-#include <algorithm>
 void Sort(int* arr, int len) {
     int t;
     for (int i = 0; i < len - 1 ; i++) {
