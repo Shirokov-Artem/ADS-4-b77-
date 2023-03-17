@@ -12,6 +12,7 @@ void Sort(int* arr, int len) {
     }
 }
 int countPairs1(int *arr, int len, int value) {
+    Sort(arr, len);
     int countSum = 0;
     int newLen = len - 1;
     for (int i = 0; i < newLen; i++) {
@@ -24,6 +25,7 @@ int countPairs1(int *arr, int len, int value) {
     return countSum;
 }
 int countPairs2(int *arr, int len, int value) {
+    Sort(arr, len);
     int countSum = 0;
     int newLen = len - 1;
     for (int i = 0; i < newLen; i++) {
@@ -35,30 +37,24 @@ int countPairs2(int *arr, int len, int value) {
     }
     return countSum;
 }
-int binarySearch(int *arr, int len, int value) {
-    int low = 0;
-    int high = len - 1;
-    int mid;
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if (arr[mid] == value) {
-            return mid;
-        } else if (arr[mid] < value) {
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
-    }
-    return -1;
-}
 int countPairs3(int *arr, int len, int value) {
+    Sort(arr, len);
     int count = 0;
-    for (int i = 0; i < len; i++) {
-        int diff = value - arr[i];
-        int index = binarySearch(arr, len, diff);
-        if (index != -1 && index != i) {
+    int i = 0;
+    int j = len - 1;
+    while (i < j) {
+        if (arr[i] + arr[j] == value) {
             count++;
-        }
+            i++;
+            j--;
+            while (i < len && arr[i] == arr[i - 1])
+                i++;
+            while (j >= 0 && arr[j] == arr[j + 1])
+                j--;
+        } else if (arr[i] + arr[j] < value)
+            i++;
+        else
+            j--;
     }
-    return count / 2;
+    return count;
 }
