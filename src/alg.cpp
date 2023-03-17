@@ -12,7 +12,6 @@ void Sort(int* arr, int len) {
     }
 }
 int countPairs1(int *arr, int len, int value) {
-    Sort(arr, len);
     int countSum = 0;
     int newLen = len - 1;
     for (int i = 0; i < newLen; i++) {
@@ -25,7 +24,6 @@ int countPairs1(int *arr, int len, int value) {
     return countSum;
 }
 int countPairs2(int *arr, int len, int value) {
-    Sort(arr, len);
     int countSum = 0;
     int newLen = len - 1;
     for (int i = 0; i < newLen; i++) {
@@ -38,7 +36,6 @@ int countPairs2(int *arr, int len, int value) {
     return countSum;
 }
 int binarySearch(int *arr, int len, int value) {
-    Sort(arr, len);
     int low = 0;
     int high = len - 1;
     int mid;
@@ -55,7 +52,6 @@ int binarySearch(int *arr, int len, int value) {
     return -1;
 }
 int countPairs3(int *arr, int len, int value) {
-    Sort(arr, len);
     int count = 0;
     for (int i = 0; i < len; i++) {
         int diff = value - arr[i];
