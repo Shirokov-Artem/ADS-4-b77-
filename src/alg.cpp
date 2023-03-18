@@ -26,7 +26,7 @@ int countPairs2(int *arr, int len, int value) {
     }
     return count;
 }
-int lower_bound(int arr[], int len, int value) {
+int lower_bound(int *arr, int len, int value) {
     int left = 0, right = len;
     while (left < right) {
         int mid = left + (right - left) / 2;
