@@ -26,20 +26,24 @@ int countPairs2(int *arr, int len, int value) {
     }
     return count;
 }
+int lower_bound(int arr[], int len, int value) {
+    int left = 0, right = len;
+    while (left < right) {
+        int mid = left + (right - left) / 2;
+        if (arr[mid] < value) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+    return left;
+}
 int countPairs3(int *arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len; i++) {
-        int l = i + 1, r = len - 1;
-        while (l <= r) {
-            int mid = l + (r - l) / 2;
-            if (arr[mid] + arr[i] == value) {
-                count++;
-                break;
-            } else if (arr[mid] + arr[i] < value) {
-                l = mid + 1;
-            } else {
-                r = mid - 1;
-            }
+        int j = lower_bound(arr + i + 1, arr + len, value - arr[i]) - arr;
+        if (j < len && arr[j] == value - arr[i]) {
+            count++;
         }
     }
     return count;
