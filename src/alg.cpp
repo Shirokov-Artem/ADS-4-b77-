@@ -11,15 +11,21 @@ int countPairs1(int *arr, int len, int value) {
     return countSum;
 }
 int countPairs2(int *arr, int len, int value) {
-    int countSum = 0;
-    for (int i = 0; i < len - 1; i++) {
-        for (int j = len - 1; i < j; j--) {
-            if (arr[i] + arr[j] == value) {
-                countSum++;
-            }
+    int count = 0;
+    int i = 0;
+    int j = len - 1;
+    while (i < j) {
+        if (arr[i] + arr[j] == value) {
+            count++;
+            i++;
+            j--;
+        } else if (arr[i] + arr[j] < value) {
+            i++;
+        } else {
+            j--;
         }
     }
-    return countSum;
+    return count;
 }
 int binary_search(int* arr, int len, int value) {
     int left = 0, right = len - 1;
