@@ -25,6 +25,7 @@ int countPairs2(int *arr, int len, int value) {
             j--;
         }
     }
+    return count;
 }
 int countPairs3(int *arr, int len, int value) {
     int count = 0;
