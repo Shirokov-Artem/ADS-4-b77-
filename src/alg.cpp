@@ -11,30 +11,39 @@ int countPairs1(int *arr, int len, int value) {
     return countSum;
 }
 int countPairs2(int *arr, int len, int value) {
-    int countSum = 0;
-    for (int i = 0; i < len - 1; i++) {
-        for (int j = len - 1; j < i; j--) {
-            if (arr[i] + arr[j] == value) {
-                countSum++;
-            }
+    int count = 0, i = 0, j = len - 1;
+    while (i < j) {
+        int sum = arr[i] + arr[j];
+        if (sum == value) {
+            count++;
+            i++;
+            j--;
+        } else if (sum < value) {
+            i++;
+        } else {
+            j--;
         }
     }
-    return countSum;
+    return count;
+}
+int upper_bound(int* arr, int len, int value) {
+    int left = 0, right = len;
+    while (left < right) {
+        int mid = (left + right) / 2;
+        if (arr[mid] <= value) {
+            left = mid + 1;
+        } else {
+            right = mid;
+        }
+    }
+    return left;
 }
 int countPairs3(int *arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len; i++) {
-        int lo = i + 1, hi = len - 1;
-        while (lo <= hi) {
-            int mid = (lo + hi) / 2;
-            if (arr[mid] + arr[i] == value) {
-                count++;
-                break;
-            } else if (arr[mid] + arr[i] < value) {
-                lo = mid + 1;
-            } else {
-                hi = mid - 1;
-            }
+        int j = upper_bound(arr, len, value - arr[i]) - 1;
+        if (j > i && arr[j] == value - arr[i]) {
+            count++;
         }
     }
     return count;
