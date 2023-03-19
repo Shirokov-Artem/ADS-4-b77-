@@ -28,21 +28,18 @@ int countPairs2(int *arr, int len, int value) {
 int countPairs3(int *arr, int len, int value) {
     int count = 0;
     for (int i = 0; i < len; i++) {
-        int complement = value - arr[i];
-        int lo = 0, hi = len - 1;
+        int lo = i + 1, hi = len - 1;
         while (lo <= hi) {
-            int mid = lo + (hi - lo) / 2;
-            if (arr[mid] == complement) {
+            int mid = (lo + hi) / 2;
+            if (arr[mid] + arr[i] == value) {
                 count++;
                 break;
-            }
-            else if (arr[mid] < complement) {
+            } else if (arr[mid] + arr[i] < value) {
                 lo = mid + 1;
-            }
-            else {
+            } else {
                 hi = mid - 1;
             }
         }
     }
-    return count / 2;
+    return count;
 }
