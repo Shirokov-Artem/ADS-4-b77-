@@ -26,20 +26,20 @@ int countPairs2(int *arr, int len, int value) {
     return countSum;
 }
 int countPairs3(int *arr, int len, int value) {
-    int count = 0;
-    for (int i = 0; i < len; i++) {
-        int lo = i + 1, hi = len - 1;
-        while (lo <= hi) {
-            int mid = (lo + hi) / 2;
-            if (arr[mid] + arr[i] == value) {
-                count++;
-                break;
-            } else if (arr[mid] + arr[i] < value) {
-                lo = mid + 1;
-            } else {
-                hi = mid - 1;
-            }
+    int countSum = 0;
+    int i = 0;
+    int j = len - 1;
+    while (i < j) {
+        int sum = arr[i] + arr[j];
+        if (sum == value) {
+            countSum++;
+            i++;
+            j--;
+        } else if (sum < value) {
+            i++;
+        } else {
+            j--;
         }
     }
-    return count;
+    return countSum;
 }
